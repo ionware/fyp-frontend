@@ -1,8 +1,7 @@
 import React from 'react';
 import Icon from '../../images/icon-03.svg';
 
-// Import utilities
-function DashboardCard03() {
+function DashboardCard03({ amount = 0 }) {
   return (
     <div className='flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-gray-200'>
       <div className='px-5 pt-5'>
@@ -14,7 +13,7 @@ function DashboardCard03() {
           Third Party Access
         </div>
         <div className='flex items-start pb-5'>
-          <div className='text-3xl font-bold text-gray-800 mr-2'>$9,962</div>
+          <div className='text-3xl font-bold text-gray-800 mr-2'>{amount}</div>
         </div>
       </div>
     </div>

@@ -4,13 +4,13 @@ import DoughnutChart from '../../charts/DoughnutChart';
 // Import utilities
 import { tailwindConfig } from '../../utils/Utils';
 
-function DashboardCard06() {
+function DashboardCard06({ stat}) {
   const chartData = {
     labels: ['Students', 'Lecturers', 'API Keys'],
     datasets: [
       {
-        label: 'Top Countries',
-        data: [35, 30, 35],
+        label: 'Resource statistic',
+        data: stat || [35, 30, 35],
         backgroundColor: [
           tailwindConfig().theme.colors.indigo[500],
           tailwindConfig().theme.colors.blue[400],
