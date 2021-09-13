@@ -17,7 +17,9 @@ requestInstance.interceptors.request.use((config) => {
 });
 
 requestInstance.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    return response.data;
+  },
   (error) => {
     if (error.response) {
       const { status, statusText, data } = error.response;

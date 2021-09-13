@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router';
 import { ClipLoader } from 'react-spinners';
 import { toast } from 'react-toastify';
+import useAppState from '../../state/useAppState';
 import { useAuth } from '../../api/auth';
 import FooterSmall from './Footer';
 
 export default function Login() {
   const [email, setEmail] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [password, setPassword] = useState('');
 
   const mutation = useAuth();
+  const { setToken, setUser, token } = useAppState();
+
+  if (token || isLoggedIn) return <Redirect to='/dashboard' />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,13 +28,20 @@ export default function Login() {
     mutation.mutate(
       { email, password },
       {
-        onSuccess: () =>
+        onSuccess: (data) => {
+          // set user and token.
+          const user = data.data;
+          setUser(user);
+          setToken(user.token);
+
+          setTimeout(() => setIsLoggedIn(true), 4000);
+
           toast.success(
             'Authentication successful. You will be redirected to your dashboard.'
-          ),
+          );
+        },
         onError: (error) => {
           if (error.data) {
-            // console.log(error);
             return toast.error(
               error.data.message || 'Something unexpected happened.'
             );
@@ -44,16 +57,16 @@ export default function Login() {
       <main>
         <section className='absolute w-full h-full'>
           <div
-            className='absolute top-0 w-full h-full bg-gray-900'
+            className='absolute top-0 w-full h-full bg-white'
             style={{
-              backgroundImage: 'url()',
+              backgroundImage: 'url(/images/bg-01.jpg)',
               backgroundSize: '100%',
               backgroundRepeat: 'no-repeat',
             }}></div>
           <div className='container mx-auto px-4 h-full'>
             <div className='flex content-center items-center justify-center h-full'>
               <div className='w-full lg:w-4/12 px-4'>
-                <div className='relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300 border-0'>
+                <div className='relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-100 border-0'>
                   <div className=' mb-0 px-6 py-6'>
                     <div className='text-center flex justify-center'>
                       <img
@@ -104,10 +117,10 @@ export default function Login() {
                           <input
                             id='customCheckLogin'
                             type='checkbox'
-                            className='form-checkbox border-0 rounded text-gray-800 ml-1 w-5 h-5'
+                            className='form-checkbox border-0 rounded text-green-800 ml-1 w-5 h-5'
                             style={{ transition: 'all .15s ease' }}
                           />
-                          <span className='ml-2 text-sm font-semibold text-gray-700'>
+                          <span className='ml-2 text-sm font-semibold text-gray-600'>
                             Remember me
                           </span>
                         </label>
@@ -115,7 +128,7 @@ export default function Login() {
 
                       <div className='text-center mt-6'>
                         <button
-                          className='bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full'
+                          className='bg-green-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full'
                           type='submit'
                           style={{ transition: 'all .15s ease' }}>
                           {mutation.isLoading ? (

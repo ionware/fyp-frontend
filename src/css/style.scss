@@ -11,6 +11,11 @@
 @import 'additional-styles/theme.scss';
 
 @layer base {
+  html,
+  body {
+    min-height: 100%;
+  }
+
   .Toastify__toast {
     font-size: 0.85rem;
   }

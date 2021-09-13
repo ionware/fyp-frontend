@@ -6,20 +6,20 @@ export default function FooterSmall(props) {
       <footer
         className={
           (props.absolute
-            ? "absolute w-full bottom-0 bg-gray-900"
+            ? "absolute w-full bottom-0 bg-white"
             : "relative") + " pb-6"
         }
       >
         <div className="container mx-auto px-4">
-          <hr className="mb-6 border-b-1 border-gray-700" />
+          <hr className="mb-6 border-b-1 border-gray-100" />
           <div className="flex flex-wrap items-center md:justify-between justify-center">
             <div className="w-full md:w-4/12 px-4">
-              <div className="text-sm text-white font-semibold py-1">
+              <div className="text-sm text-gray-400 font-semibold py-1">
                 Copyright © {new Date().getFullYear()}{" "}
                 <span
-                  className="text-white hover:text-gray-400 text-sm font-semibold py-1"
+                  className="text-sm font-semibold py-1"
                 >
-                  Adedeji Stephen
+                  Adedeji Stephen - 17/67AA/163
                 </span>
               </div>
             </div>
@@ -27,7 +27,7 @@ export default function FooterSmall(props) {
               <ul className="flex flex-wrap list-none md:justify-end  justify-center">
                 <li>
                   <span
-                    className="text-white text-sm font-semibold block py-1 px-3"
+                    className="text-gray-400 text-sm font-semibold block py-1 px-3"
                   >
                     Final Year Student Project
                   </span>
@@ -35,7 +35,7 @@ export default function FooterSmall(props) {
                 <li>
                   <a
                     href="https://github.com/ionware/fyp-frontend"
-                    className="text-white hover:text-gray-400 text-sm font-semibold block py-1 px-3"
+                    className="text-gray-400 hover:text-green-500 text-sm font-semibold block py-1 px-3"
                   >
                     GitHub Repo
                   </a>
