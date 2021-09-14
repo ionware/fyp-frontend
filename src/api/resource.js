@@ -36,3 +36,12 @@ export const useGetKeys = () => useQuery('keys', () => request.get(`/key`));
  */
 export const useGetStatistics = () =>
   useQuery('statistics', () => request.get('/statistics'));
+
+/**
+ * Search for students
+ * @param {string} query
+ */
+export const useGetSearch = (query) =>
+  useQuery(['search', query], () => request.get(`/search?q=${query}`), {
+    enabled: !!query,
+  });
