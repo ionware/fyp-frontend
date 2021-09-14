@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-globals */
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { useLocation, useHistory } from 'react-router-dom';
