@@ -8,17 +8,11 @@ export const useGetAllStudents = () =>
   useQuery('all_students', () => request.get('/students'));
 
 /**
- * Get all recent session students. (Query by session)
- */
-export const useGetStudent = () =>
-  useQuery('student', () => request.get(`/student`));
-
-/**
  * Get student by their session ID.
  */
-export const useGetStudentBySession = (session) =>
+export const useGetStudent = (session) =>
   useQuery(['student', session], () =>
-    request.get(`/student?session=${session}`)
+    request.get(`/student${session ? '?session=' + session : ''}`)
   );
 
 /**

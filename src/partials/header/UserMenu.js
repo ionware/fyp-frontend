@@ -79,7 +79,7 @@ function UserMenu() {
           onFocus={() => setDropdownOpen(true)}
           onBlur={() => setDropdownOpen(false)}>
           <div className='pt-0.5 pb-2 px-3 mb-1 border-b border-gray-200'>
-            <div className='font-medium text-gray-800'>Acme Inc.</div>
+            <div className='font-medium text-gray-800'>{`${user.title} ${user.firstName} ${user.lastName}`}</div>
             <div className='text-xs text-gray-500 italic'>
               {user.role == 1 ? 'Lecturer' : 'Admin Lecturer'}
             </div>

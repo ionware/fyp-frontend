@@ -16,6 +16,11 @@ import './charts/ChartjsConfig';
 // Import pages.
 import Dashboard from './pages/Dashboard';
 import Login from './pages/login';
+import ApiKey from './pages/ApiKey';
+import Settings from './pages/Settings';
+import Session from './pages/Session';
+import Students from './pages/Students';
+import Lecturers from './pages/Lecturers';
 import Logout from './pages/Logout';
 
 const queryClient = new QueryClient();
@@ -24,7 +29,7 @@ function App() {
   const location = useLocation();
   const savedState = getState();
   const [token, setToken] = useState(savedState?.token || null);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(savedState?.user || null);
 
   useEffect(() => {
     document.querySelector('html').style.scrollBehavior = 'auto';
@@ -42,12 +47,13 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <ToastContainer />
         <Switch>
-          <Route exact path='/'>
-            <Login />
-          </Route>
-          <Route exact path='/dashboard'>
-            <Dashboard />
-          </Route>
+          <Route exact path='/' component={Login} />
+          <Route exact path='/dashboard' component={Dashboard} />
+          <Route exact path='/students' component={Students} />
+          <Route exact path='/lecturers' component={Lecturers} />
+          <Route exact path='/sessions' component={Session} />
+          <Route exact path='/settings' component={Settings} />
+          <Route exact path='/keys' component={ApiKey} />
           <Route exact path='/logout'>
             <Logout />
           </Route>
