@@ -1,16 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import PageTitle from '../components/PageTitle';
 import Layout from '../components/Layout';
+import UserAddModal from '../components/UserAddModal';
 import { useGetUsers } from '../api/resource';
 
-export default function Lecturers() {
+export default function Users() {
   const users = useGetUsers();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const referesh = () => users.refetch();
 
   return (
     <Layout>
       <div>
-        <PageTitle>Department Lecturers</PageTitle>
+        <PageTitle>System Users</PageTitle>
+        <UserAddModal
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          callback={referesh}
+        />
+
+        <div className='flex justify-end'>
+          <button
+            type='button'
+            onClick={() => setIsOpen(!isOpen)}
+            className='py-2 px-3 font-semibold bg-gray-500 text-gray-100 rounded text-sm hover:bg-gray-700 transition-colors duration-300'>
+            Add new user
+          </button>
+        </div>
 
         <div className='mt-6 p-6 bg-white'>
           {!users.data ? (

@@ -19,8 +19,9 @@ import Login from './pages/login';
 import ApiKey from './pages/ApiKey';
 import Settings from './pages/Settings';
 import Session from './pages/Session';
+import Faculty from './pages/Faculty';
 import Students from './pages/Students';
-import Lecturers from './pages/Lecturers';
+import Users from './pages/Users';
 import Logout from './pages/Logout';
 
 const queryClient = new QueryClient();
@@ -50,8 +51,9 @@ function App() {
           <Route exact path='/' component={Login} />
           <Route exact path='/dashboard' component={Dashboard} />
           <Route exact path='/students' component={Students} />
-          <Route exact path='/lecturers' component={Lecturers} />
+          <Route exact path='/users' component={Users} />
           <Route exact path='/sessions' component={Session} />
+          <Route exact path='/faculties' component={Faculty} />
           <Route exact path='/settings' component={Settings} />
           <Route exact path='/keys' component={ApiKey} />
           <Route exact path='/logout'>

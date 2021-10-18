@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery, useMutation } from 'react-query';
 import request from './request';
 
 /**
@@ -22,9 +22,27 @@ export const useGetSession = () =>
   useQuery('sessions', () => request.get('/session'));
 
 /**
+ * Get all faculties.
+ */
+export const useGetFaculties = () =>
+  useQuery('faculties', () => request.get(`/faculty`));
+
+/**
+ * Get all departments.
+ */
+export const useGetDepartments = () =>
+  useQuery('departments', () => request.get(`/department`));
+
+/**
  * Get all users.
  */
 export const useGetUsers = () => useQuery('users', () => request.get(`/user`));
+
+/**
+ * Create a new user.
+ */
+export const usePostUser = () =>
+  useMutation((data) => request.post(`user`, data));
 
 /**
  * Get all API keys for third-party
