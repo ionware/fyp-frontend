@@ -8,8 +8,7 @@ function Row({ data }) {
     firstName,
     lastName,
     session,
-    email,
-    gender,
+    department,
     matric_number,
   } = data;
   return (
@@ -20,18 +19,13 @@ function Row({ data }) {
         </div>
       </td>
       <td className='p-2'>
-        <div className=''>{matric_number}</div>
+        <div className='items-center'>{matric_number}</div>
       </td>
       <td className='p-2'>
         <div className=' text-green-500'>{session}</div>
       </td>
       <td className='p-2'>
-        <div className=''>{email}</div>
-      </td>
-      <td className='p-2'>
-        <div className=' text-light-blue-500'>
-          {String(gender).toUpperCase() === 'M' ? 'Male' : 'Female'}
-        </div>
+        <div className=''>{department}</div>
       </td>
     </tr>
   );
@@ -70,10 +64,7 @@ function DashboardCard07() {
                       <div className='font-semibold'>Session</div>
                     </th>
                     <th className='p-2'>
-                      <div className='font-semibold'>Email</div>
-                    </th>
-                    <th className='p-2'>
-                      <div className='font-semibold'>Gender</div>
+                      <div className='font-semibold'>Department</div>
                     </th>
                   </tr>
                 </thead>

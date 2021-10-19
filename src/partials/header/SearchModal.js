@@ -140,16 +140,15 @@ function SearchModal() {
                         firstName,
                         lastName,
                         surname,
+                        department,
                         matric_number,
-                        gender,
-                        email,
                         phone,
                       },
                       index
                     ) => {
                       return index < 16 ? (
                         <li key={id}>
-                          <div className='flex items-center p-2 text-gray-800 hover:text-white hover:bg-indigo-500 rounded group'>
+                          <div className='flex items-center p-2 text-gray-800 hover:text-white hover:bg-blue-300 cursor-pointer rounded group'>
                             <img
                               src='/images/human.png'
                               height={30}
@@ -158,12 +157,14 @@ function SearchModal() {
                               alt='user'
                             />
                             <span>
-                              {`${surname} ${firstName} ${lastName} (${gender})`}{' '}
-                              -{' '}
-                              <span className='font-semibold'>
+                              {`${surname} ${firstName} ${lastName}`} —{' '}
+                              <span className='font-semibold text-gray-500'>
                                 {matric_number}
-                              </span>{' '}
-                              ({email})
+                              </span>
+                              {' — '}
+                              <span className='font-semibold'>
+                                {department}
+                              </span>
                             </span>
                           </div>
                         </li>

@@ -4,10 +4,12 @@ import { useLocation, useHistory } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import Layout from '../components/Layout';
 import PageTitle from '../components/PageTitle';
+import StudentAddModal from '../components/StudentAddModal';
 import { useGetSession, useGetStudent } from '../api/resource';
 
 export default function Students() {
   const [selectedSession, setSelectedSession] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
 
   const params = new URLSearchParams(useLocation().search);
   const sessions = useGetSession(params.get('session'));
@@ -23,6 +25,20 @@ export default function Students() {
     <Layout>
       <div>
         <PageTitle>Manage Students</PageTitle>
+        <StudentAddModal
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          callback={() => students.refetch()}
+        />
+
+        <div className='flex justify-end'>
+          <button
+            type='button'
+            onClick={() => setIsOpen(!isOpen)}
+            className='py-2 px-3 font-semibold bg-gray-500 text-gray-100 rounded text-sm hover:bg-gray-700 transition-colors duration-300'>
+            Add new student
+          </button>
+        </div>
 
         <div className='mt-6 p-6 bg-white'>
           <div className='flex w-full justify-end mb-5'>
@@ -67,7 +83,7 @@ export default function Students() {
                           <th
                             scope='col'
                             className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                            Phone Number
+                            Department
                           </th>
                           <th
                             scope='col'
@@ -104,7 +120,7 @@ function TableRow({ data }) {
     session,
     email,
     gender,
-    phone,
+    department,
     matric_number,
   } = data;
 
@@ -131,7 +147,7 @@ function TableRow({ data }) {
       </td>
       <td className='px-6 py-4 whitespace-nowrap'>
         <span className='px-2 inline-flex text-xs leading-5 font-semibold'>
-          {phone}
+          {department}
         </span>
       </td>
       <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>

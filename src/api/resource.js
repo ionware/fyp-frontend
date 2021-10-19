@@ -16,6 +16,12 @@ export const useGetStudent = (session) =>
   );
 
 /**
+ * Create student record.
+ */
+export const usePostStudent = () =>
+  useMutation((data) => request.post(`student`, data));
+
+/**
  * Get all sessions.
  */
 export const useGetSession = () =>
@@ -26,6 +32,13 @@ export const useGetSession = () =>
  */
 export const useGetFaculties = () =>
   useQuery('faculties', () => request.get(`/faculty`));
+
+/**
+ * Get faculty by ID.
+ * @param {int} id
+ */
+export const useGetFacultyById = (id) =>
+  useQuery(['departments', id], () => request.get(`/faculty/${id}`));
 
 /**
  * Get all departments.

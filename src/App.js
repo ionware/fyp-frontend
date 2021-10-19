@@ -20,6 +20,7 @@ import ApiKey from './pages/ApiKey';
 import Settings from './pages/Settings';
 import Session from './pages/Session';
 import Faculty from './pages/Faculty';
+import Department from './pages/Departments';
 import Students from './pages/Students';
 import Users from './pages/Users';
 import Logout from './pages/Logout';
@@ -54,6 +55,7 @@ function App() {
           <Route exact path='/users' component={Users} />
           <Route exact path='/sessions' component={Session} />
           <Route exact path='/faculties' component={Faculty} />
+          <Route exact path='/faculties/:id' component={Department} />
           <Route exact path='/settings' component={Settings} />
           <Route exact path='/keys' component={ApiKey} />
           <Route exact path='/logout'>
